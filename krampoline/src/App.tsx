@@ -3,6 +3,9 @@ import './App.css';
 import { useEffect, useState } from 'react';
 
 import { instance } from './api.js';
+import { defaultFadeInUpVariants } from './constants/motions';
+import HomePage from './pages/home';
+import Router from './router/Router';
 
 function App() {
   const [apiTest, setApiTest] = useState(false);
@@ -39,6 +42,7 @@ function App() {
           <div>{dbTest ? 'CONNECT' : 'NOT YET'}</div>
         </div>
       </header>
+      <HomePage />
     </div>
   );
 }
