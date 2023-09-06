@@ -1,8 +1,10 @@
 import './App.css';
 
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 import { instance } from './api.js';
+import { defaultFadeInUpVariants } from './constants/motions';
 
 function App() {
   const [apiTest, setApiTest] = useState(false);
@@ -34,10 +36,15 @@ function App() {
           <button onClick={handleApiOnclick}>API TEST</button>
           <div>{apiTest ? 'CONNECT' : 'NOT YET'}</div>
         </div>
-        <div>
+        <motion.div
+          variants={defaultFadeInUpVariants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+        >
           <button onClick={handleDbOnClick}>DB TEST</button>
           <div>{dbTest ? 'CONNECT' : 'NOT YET'}</div>
-        </div>
+        </motion.div>
       </header>
     </div>
   );
