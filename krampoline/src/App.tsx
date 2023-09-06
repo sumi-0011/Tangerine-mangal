@@ -1,7 +1,7 @@
 import './App.css';
 
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { instance } from './api.js';
 import { defaultFadeInUpVariants } from './constants/motions';
