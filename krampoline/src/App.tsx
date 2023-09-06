@@ -31,7 +31,8 @@ function App() {
 
   return (
     <div className="App">
-      <Router />
+		<HomePage/>
+      <!-- <Router /> -->
     </div>
   );
 }
