@@ -1,11 +1,8 @@
 import './App.css';
 
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { instance } from './api.js';
-import { defaultFadeInUpVariants } from './constants/motions';
-import Router from './router/Router';
 
 function App() {
   const [apiTest, setApiTest] = useState(false);
@@ -31,24 +28,17 @@ function App() {
 
   return (
     <div className="App">
-      <Router />
-
-      {/* <header className="App-header">
+      <header className="App-header">
         <div>Hello Krampoline ! sumi</div>
         <div>
           <button onClick={handleApiOnclick}>API TEST</button>
           <div>{apiTest ? 'CONNECT' : 'NOT YET'}</div>
         </div>
-        <motion.div
-          variants={defaultFadeInUpVariants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-        >
+        <div>
           <button onClick={handleDbOnClick}>DB TEST</button>
           <div>{dbTest ? 'CONNECT' : 'NOT YET'}</div>
-        </motion.div>
-      </header> */}
+        </div>
+      </header>
     </div>
   );
 }
