@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 import { instance } from './api.js';
 import { defaultFadeInUpVariants } from './constants/motions';
+import Router from './router/Router';
 
 function App() {
   const [apiTest, setApiTest] = useState(false);
@@ -30,7 +31,9 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <Router />
+
+      {/* <header className="App-header">
         <div>Hello Krampoline ! sumi</div>
         <div>
           <button onClick={handleApiOnclick}>API TEST</button>
@@ -45,7 +48,7 @@ function App() {
           <button onClick={handleDbOnClick}>DB TEST</button>
           <div>{dbTest ? 'CONNECT' : 'NOT YET'}</div>
         </motion.div>
-      </header>
+      </header> */}
     </div>
   );
 }
