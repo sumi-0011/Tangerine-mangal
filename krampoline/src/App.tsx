@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 import { instance } from './api.js';
 import { defaultFadeInUpVariants } from './constants/motions';
+import HomePage from './pages/home';
 import Router from './router/Router';
 
 function App() {
@@ -31,8 +32,7 @@ function App() {
 
   return (
     <div className="App">
-		<HomePage/>
-      <!-- <Router /> -->
+      <HomePage />
     </div>
   );
 }
