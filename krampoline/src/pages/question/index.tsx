@@ -87,20 +87,15 @@ const QUESTIONS: QuestionType[] = [
       },
     ],
   },
-
-  {
-    titles: ['그럼 너의 하루는 어땠어?'],
-    type: 'short',
-    subTitle: 'ex. 서핑, 산책, 등산, 카페에서 힐링',
-  },
 ];
 
 function Question() {
   const { currentStep, next } = useStep({
-    initial: 2,
+    initial: 1,
     max: QUESTIONS.length,
   });
 
+  console.log('currentStep: ', currentStep);
   const [selects, setSelects] = useState<string[]>([]);
   console.log('selects: ', selects);
 
@@ -113,7 +108,12 @@ function Question() {
         <ImageContainer>
           <StepImage step={currentStep} />
         </ImageContainer>
-        <QuestionItem currentItem={currentItem} setSelects={setSelects} next={next} />
+        <QuestionItem
+          currentStep={currentStep}
+          currentItem={currentItem}
+          setSelects={setSelects}
+          next={next}
+        />
       </Container>
     </PageContainer>
   );

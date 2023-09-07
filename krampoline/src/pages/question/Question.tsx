@@ -23,27 +23,48 @@ interface ShortQuestionType {
 
 type QuestionType = ChoiceQuestionType | ShortQuestionType;
 
+const SHORT_QUESTION = {
+  titles: ['그럼 너의 하루는 어땠어?'],
+  type: 'short',
+  subTitle: 'ex. 서핑, 산책, 등산, 카페에서 힐링',
+};
+
 interface Props {
   currentItem: QuestionType;
+  currentStep: number;
 
   setSelects: Dispatch<SetStateAction<string[]>>;
   next: () => void;
 }
 
-function Question({ currentItem, setSelects, next }: Props) {
+const MAX_STEP = 3;
+
+function Question({ currentItem, currentStep, setSelects, next }: Props) {
   const { push } = useInnerNavigator();
+
   const [inputValue, setInputValue] = useState('');
+  const [isShort, setIsShort] = useState(false);
 
   const onNext = (value: string) => {
+    if (value === '여기에는 없는 특별한 하루') {
+      setIsShort(true);
+      return;
+    }
+    if (currentStep === MAX_STEP) {
+      setSelects((prev) => [...prev, value]);
+      push(path.resultLoading);
+      return;
+    }
     next();
     setSelects((prev) => [...prev, value]);
   };
 
-  const onFinalNext = () => {
+  const onShortNext = () => {
     if (inputValue === '') {
       alert('입력해주세요');
       return;
     }
+
     setSelects((prev) => [...prev, inputValue]);
     push(path.resultLoading);
   };
@@ -56,12 +77,13 @@ function Question({ currentItem, setSelects, next }: Props) {
             {title}
           </h1>
         ))}
-        {currentItem.type === 'short' && currentItem?.subTitle && (
-          <h2 className="r-16">{currentItem.subTitle}</h2>
+        {isShort && SHORT_QUESTION?.subTitle && (
+          <h2 className="r-16">{SHORT_QUESTION.subTitle}</h2>
         )}
       </HeadingContainer>
       <QuestionContainer>
         {currentItem.type === 'choice' &&
+          !isShort &&
           currentItem.items.map((question) => (
             <QuestionItem
               className="b-20"
@@ -72,10 +94,10 @@ function Question({ currentItem, setSelects, next }: Props) {
             </QuestionItem>
           ))}
 
-        {currentItem.type === 'short' && (
+        {isShort && (
           <ShortContainer>
             <QuestionInputItem value={inputValue} onChange={setInputValue} />
-            <button onClick={onFinalNext}>다음</button>
+            <button onClick={onShortNext}>다음</button>
           </ShortContainer>
         )}
       </QuestionContainer>
