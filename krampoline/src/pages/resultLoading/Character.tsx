@@ -20,6 +20,8 @@ export default Character;
 const Container = styled.div`
   position: relative;
   text-align: center;
+  height: calc(159px + 48px);
+
   img {
     position: absolute;
     top: 48px;

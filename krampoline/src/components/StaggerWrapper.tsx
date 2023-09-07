@@ -57,15 +57,6 @@ const StaggerWrapper = ({
 
 export default StaggerWrapper;
 
-const WrapperStyled = styled(motion.article)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-`;
-
 const fadeInUpVariants: Variants = {
   initial: {
     opacity: 0,

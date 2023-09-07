@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
+import PageContainer from '../../components/PageContainer';
+import StaggerWrapper from '../../components/StaggerWrapper';
 import { path } from '../../constants/path';
 import useInnerNavigator from '../../hooks/useInnerNavigator';
 import useStep from '../../hooks/useStep';
@@ -11,7 +13,7 @@ const QUESTIONS = [
   [
     {
       id: 1,
-      title: '설문 항목 하나 둘 셋',
+      title: '설문 항목 하나 둘 셋1111',
     },
     {
       id: 2,
@@ -21,7 +23,7 @@ const QUESTIONS = [
   [
     {
       id: 1,
-      title: '설문 항목 하나 둘 셋',
+      title: '설문 항목 하나 둘 셋2222',
     },
     {
       id: 2,
@@ -31,7 +33,7 @@ const QUESTIONS = [
   [
     {
       id: 1,
-      title: '설문 항목 하나 둘 셋',
+      title: '설문 항목 하나 둘 333',
     },
     {
       id: 2,
@@ -41,7 +43,7 @@ const QUESTIONS = [
   [
     {
       id: 1,
-      title: '설문 항목 하나 둘 셋',
+      title: '설문 항목 하나 둘 셋4444',
     },
     {
       id: 2,
@@ -66,21 +68,27 @@ function Question() {
   };
 
   return (
-    <Container>
-      <Dots step={currentStep} />
-      <ImageContainer>
-        <DummyImage />
-      </ImageContainer>
-      <HeadingContainer>
-        <h1 className="b-24">안녕 나는 춘식이야</h1>
-        <h1 className="b-24">여기에 어떤 내용을 넣을까</h1>
-      </HeadingContainer>
-      <QuestionContainer onClick={onNext}>
-        {QUESTIONS[currentStep - 1].map((question) => (
-          <QuestionItem key={question.id}>{question.title}</QuestionItem>
-        ))}
-      </QuestionContainer>
-    </Container>
+    <PageContainer>
+      <Container>
+        <Dots step={currentStep} />
+        <StaggerWrapper>
+          <ImageContainer>
+            <DummyImage />
+          </ImageContainer>
+          <HeadingContainer>
+            <h1 className="b-24">안녕 나는 춘식이야</h1>
+            <h1 className="b-24">여기에 어떤 내용을 넣을까</h1>
+          </HeadingContainer>
+          <QuestionContainer>
+            {QUESTIONS[currentStep - 1].map((question) => (
+              <QuestionItem key={question.id} onClick={onNext}>
+                {question.title}
+              </QuestionItem>
+            ))}
+          </QuestionContainer>
+        </StaggerWrapper>
+      </Container>
+    </PageContainer>
   );
 }
 
@@ -91,6 +99,7 @@ const QuestionItem = styled.div`
   width: fit-content;
   border-radius: 10px 10px 30px 10px;
   border: 1px solid var(--color-primary-orange-2, #b38800);
+  cursor: pointer;
 `;
 
 const ImageContainer = styled.div`
