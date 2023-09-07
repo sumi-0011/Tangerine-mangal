@@ -1,7 +1,8 @@
 import './App.css';
 
-import { useEffect, useState } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { instance } from './api.js';
 import { defaultFadeInUpVariants } from './constants/motions';
@@ -36,16 +37,25 @@ function App() {
   return (
     <div className="App">
       <div className="layout">
-        <BrowserRouter>
-          <Routes>
-            {/* 단독 레이아웃 */}
-            <Route path={staticServerUrl + '/login'} element={<HomePage />}></Route>
-            <Route path={staticServerUrl + '/'} element={<HomePage />}></Route>
-          </Routes>
-        </BrowserRouter>
+        <Container>
+          <BrowserRouter>
+            <Routes>
+              {/* 단독 레이아웃 */}
+              <Route path={staticServerUrl + '/login'} element={<HomePage />}></Route>
+              <Route path={staticServerUrl + '/'} element={<HomePage />}></Route>
+            </Routes>
+          </BrowserRouter>
+        </Container>
       </div>
     </div>
   );
 }
 
 export default App;
+
+const Container = styled.main`
+  min-height: 100vh;
+  margin: 0 auto;
+  max-width: 475px;
+  background-color: #ffffff;
+`;
