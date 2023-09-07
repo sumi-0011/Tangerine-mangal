@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import { instance } from './api.js';
 import HomePage from './pages/home';
+import StartPage from './pages/start';
 
 const staticServerUrl = process.env.REACT_APP_PATH || '';
 
@@ -29,7 +30,6 @@ function App() {
   //     console.log(err);
   //   }
   // };
-  console.log('staticServerUrl: ', staticServerUrl);
 
   return (
     <div className="App">
@@ -39,7 +39,7 @@ function App() {
             <Routes>
               {/* 단독 레이아웃 */}
               <Route path={staticServerUrl + '/login'} element={<HomePage />}></Route>
-              <Route path={staticServerUrl + '/'} element={<HomePage />}></Route>
+              <Route path={staticServerUrl + '/'} element={<StartPage />}></Route>
               <Route path="*" element={<div>Not Found...</div>}></Route>
             </Routes>
           </BrowserRouter>
@@ -56,4 +56,7 @@ const Container = styled.main`
   margin: 0 auto;
   max-width: 475px;
   background-color: #ffffff;
+  overflow: hidden;
+  position: relative;
+  text-align: left;
 `;
