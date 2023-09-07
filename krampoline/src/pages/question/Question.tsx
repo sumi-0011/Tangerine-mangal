@@ -1,7 +1,7 @@
 import { Dispatch, memo, SetStateAction, useState } from 'react';
 import styled from 'styled-components';
 
-import BottomLeftButton from '../../components/BottomLeftArrowButton';
+import BottomLeftArrowButton from '../../components/BottomLeftArrowButton';
 import StaggerWrapper from '../../components/StaggerWrapper';
 import { path } from '../../constants/path';
 import useInnerNavigator from '../../hooks/useInnerNavigator';
@@ -98,7 +98,7 @@ function Question({ currentItem, currentStep, setSelects, next }: Props) {
         {isShort && (
           <ShortContainer>
             <QuestionInputItem value={inputValue} onChange={setInputValue} />
-            <BottomLeftButton onClick={onShortNext}>보내기</BottomLeftButton>
+            <BottomLeftArrowButton onClick={onShortNext}>보내기</BottomLeftArrowButton>
           </ShortContainer>
         )}
       </QuestionContainer>
