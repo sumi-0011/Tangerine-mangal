@@ -1,9 +1,43 @@
 import { motion } from 'framer-motion';
+import { SetStateAction, useState } from 'react';
 import styled from 'styled-components';
 
+import BottomLeftArrowButton from '../../components/BottomLeftArrowButton';
 import PageContainer from '../../components/PageContainer';
 import { defaultFadeInVariants } from '../../constants/motions';
 import basket from './basket.svg';
+
+// interface NextStage {
+//   title: string;
+//   contents: string[];
+// }
+
+// type NextStageType = NextStage;
+
+const NextStateContents: NextStageType[] = [
+  {
+    title: '열심히 만들어 본 그물망이야',
+    contents: ['아름다운 그물망에 너가 좋아하는 가게들을 마음껏 담아봐'],
+  },
+  {
+    title: '이 아름다운 그물망에',
+    contents: [
+      '오늘은 제주가 착한 귤을 한가득 담아줄게',
+      '제주 주변 착한 가게에서 귤에 이야기를 적어 보내왔어',
+    ],
+  },
+  {
+    title: '배고픈 너를 위한 착한 귤 이야기',
+    contents: ['한번 들어볼래?'],
+  },
+];
+
+// interface Props {
+//   currentItem: NextStateContents;
+//   currentStep: number;
+
+//   next: () => void;
+// }
 
 function StoryPage() {
   return (
@@ -24,12 +58,13 @@ function StoryPage() {
         </ImgWrapper>
         <TextContainer>
           <HeadingContainer>
-            <h1 className="b-24">열심히 만들어 본 그물망이야</h1>
+            <h1 className="b-24">이 아름다운 그물망에</h1>
           </HeadingContainer>
           <div>
             <p className="r-14">아름다운 그물망에 너가 좋아하는 가게들을 마음껏 담아봐</p>
           </div>
         </TextContainer>
+        <BottomLeftArrowButton>다음</BottomLeftArrowButton>
       </Container>
     </PageContainer>
   );
@@ -48,7 +83,6 @@ const Container = styled.div`
 `;
 
 const ImgWrapper = styled(motion.div)`
-  margin-top: 114px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,11 +127,11 @@ const SkipButton = styled.button`
 `;
 
 const SkipContainer = styled.div`
-  width: 100%;
+  top: 62px;
+  right: 8px;
+  position: absolute;
+  width: fit-content;
   height: fit-content;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
 `;
 
 export default StoryPage;
