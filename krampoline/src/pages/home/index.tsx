@@ -9,12 +9,8 @@ const staticServerUrl = process.env.REACT_APP_PATH || '';
 
 function HomePage() {
   const { position } = usePosition();
+
   console.log('position: ', position);
-  // useEffect(() => {
-  //   navigator.geolocation.getCurrentPosition((position) => {
-  //     console.log(position);
-  //   });
-  // }, []);
 
   return (
     <div>
