@@ -31,17 +31,6 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <div>Hello Krampoline ! sumi</div>
-        <div>
-          <button onClick={handleApiOnclick}>API TEST</button>
-          <div>{apiTest ? 'CONNECT' : 'NOT YET'}</div>
-        </div>
-        <div>
-          <button onClick={handleDbOnClick}>DB TEST</button>
-          <div>{dbTest ? 'CONNECT' : 'NOT YET'}</div>
-        </div>
-      </header>
       <HomePage />
     </div>
   );
