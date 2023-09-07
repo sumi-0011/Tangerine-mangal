@@ -2,8 +2,10 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import styled from 'styled-components';
 
+import { defaultFadeInUpVariants } from '../../constants/motions';
 import useInnerNavigator from '../../hooks/useInnerNavigator';
 import ArrowIcon from './arrow_back_24px.svg';
+import BigRabong from './big-rabong.svg';
 import MainCircle from './main_circle.svg';
 import Tangerine from './Tangerine.svg';
 
@@ -20,7 +22,7 @@ function StartPage() {
             <p className="eb-16">Start page</p>
           </Link> */}
           <HeadingContainer>
-            <img src={Tangerine} alt="Tangerine" />
+            {/* <img src={Tangerine} alt="Tangerine" /> */}
             <h1>나의 제주,</h1>
             <h1>착한 감귤 나무</h1>
           </HeadingContainer>
@@ -35,33 +37,89 @@ function StartPage() {
             <p>사라지는 일은 결코 없단다</p>
           </Par3>
           <Par4 className="eb-12">- 나의 라임오렌지나무 중 -</Par4>
-          <Par5>
-            <p className="r-12">제주도의 착한 가격 식당을 경험해보세요</p>
-          </Par5>
 
-          <MainCircleContainer isGo={isGo}>
-            <img src={MainCircle} alt="main circle" />
-          </MainCircleContainer>
+          <MainRaBong>
+            <img src={BigRabong} alt="big rabong" />
+          </MainRaBong>
         </MoveContainer>
-        <ButtonContainer
-          className="b-16"
-          onClick={() => {
-            if (isGo) {
-              push('/onboarding');
-              return;
-            }
-            setIsGo(true);
-          }}
-        >
-          Go!
-          <img src={ArrowIcon} alt="arrow" />
-        </ButtonContainer>
+        {isGo ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { delay: 0.4 } }}
+            exit={{ opacity: 0, x: -10 }}
+          >
+            <GoButton>시작하기</GoButton>
+          </motion.div>
+        ) : (
+          <ButtonContainer
+            className="b-16"
+            onClick={() => {
+              setIsGo(true);
+            }}
+          >
+            Go!
+            <img src={ArrowIcon} alt="arrow" />
+          </ButtonContainer>
+        )}
       </Container>
+      {isGo && (
+        <motion.div
+          initial={{ y: 120 }}
+          animate={{ y: 0, transition: { delay: 0.4, duration: 0.4 } }}
+          exit={{ y: 0 }}
+        >
+          <BottomPopUp className="b-14">
+            <p>저 구르미와 함께</p>
+            <p>제주도의 착한 가격 식당을 경험해봐요</p>
+
+            <img
+              src={require('./groom_with_shadow.png')}
+              alt="main circle"
+              width={90}
+              height={77.32}
+            />
+          </BottomPopUp>
+        </motion.div>
+      )}
     </motion.div>
   );
 }
 
 export default StartPage;
+
+const BottomPopUp = styled.div`
+  position: absolute;
+  bottom: 0;
+  background: #fff0bf;
+  height: 110px;
+  width: 100%;
+
+  padding: 28px 37px;
+  box-sizing: border-box;
+
+  img {
+    position: absolute;
+    bottom: 46px;
+    right: 37px;
+  }
+`;
+
+const GoButton = styled.button`
+  position: absolute;
+  bottom: 150px;
+  right: 34px;
+
+  background-color: #ffa000;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: none;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+  font-size: 22.456px;
+  font-weight: 700;
+  line-height: 28.07px; /* 125% */
+`;
 
 const ButtonContainer = styled.div`
   border-radius: 8px;
@@ -84,7 +142,7 @@ const HeadingContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  padding-top: 170px;
+  padding-top: 116px;
 
   color: #302b1d;
   font-size: 36px;
@@ -97,27 +155,25 @@ const HeadingContainer = styled.div`
   z-index: 1;
 `;
 
-const MainCircleContainer = styled.div<{
-  isGo: boolean;
-}>`
+const MainRaBong = styled.div`
   position: absolute;
-  top: 108px;
-  left: calc(260px - 42px);
+  top: 156px;
   z-index: 0;
+  left: 136px;
 `;
 
 const MoveContainer = styled(motion.div)<{
   isGo: boolean;
 }>`
   background-color: #fff;
-  width: calc(100% + 518px);
+  width: calc(100% + 218px);
   height: 100vh;
   position: relative;
 
   ${(props) =>
     props.isGo &&
     `
-    transform: translateX(-570px);
+    transform: translateX(-320px);
     transition: transform 1s ease-in-out;
  `}
 `;
@@ -130,7 +186,7 @@ const Par2 = styled.div`
 const Par3 = styled.div`
   position: absolute;
   top: 200px;
-  left: 572px;
+  left: 412px;
 
   color: #302b1d;
   font-size: 20px;
@@ -144,7 +200,7 @@ const Par3 = styled.div`
 const Par4 = styled.div`
   position: absolute;
   top: 304px;
-  left: 719px;
+  left: 500px;
   width: 210px;
 `;
 
