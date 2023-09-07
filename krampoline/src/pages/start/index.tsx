@@ -19,7 +19,7 @@ function StartPage() {
         <button
           onClick={() => {
             if (isGo) {
-              push('/login');
+              push('/question');
               return;
             }
             setIsGo(true);
