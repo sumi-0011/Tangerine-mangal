@@ -4,10 +4,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { instance } from './api.js';
+import { staticServerUrl } from './constants/url';
 import HomePage from './pages/home';
 import StartPage from './pages/start';
-
-const staticServerUrl = process.env.REACT_APP_PATH || '';
 
 function App() {
   // const [apiTest, setApiTest] = useState(false);

@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 
 import StaggerWrapper from '../../components/StaggerWrapper';
 import TypingString from '../../components/TypingString';
+import { staticServerUrl } from '../../constants/url';
 import usePosition from '../../hooks/usePosition';
-
-const staticServerUrl = process.env.REACT_APP_PATH || '';
 
 function HomePage() {
   const { position } = usePosition();

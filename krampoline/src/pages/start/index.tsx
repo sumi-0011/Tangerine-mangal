@@ -1,16 +1,30 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
+import useInnerNavigator from '../../hooks/useInnerNavigator';
+
 function StartPage() {
+  const { push } = useInnerNavigator();
+
   const [isGo, setIsGo] = useState(false);
-  console.log('isGo: ', isGo);
 
   return (
     <Container>
       <MoveContainer isGo={isGo}>
         <p className="eb-16">Start page</p>
       </MoveContainer>
-      <button onClick={() => setIsGo(true)}>Go!</button>
+      <button
+        onClick={() => {
+          if (isGo) {
+            push('/login');
+            return;
+          }
+          setIsGo(true);
+        }}
+      >
+        Go!
+      </button>
     </Container>
   );
 }
