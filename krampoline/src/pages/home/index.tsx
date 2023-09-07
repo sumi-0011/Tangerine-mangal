@@ -1,12 +1,12 @@
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { instance } from '../../api';
 import StaggerWrapper from '../../components/StaggerWrapper';
 import TypingString from '../../components/TypingString';
+import { staticServerUrl } from '../../constants/url';
 import usePosition from '../../hooks/usePosition';
-
-const staticServerUrl = process.env.REACT_APP_PATH || '';
 
 function HomePage() {
   const { position } = usePosition();
@@ -26,8 +26,9 @@ function HomePage() {
       console.log(err);
     }
   };
+
   return (
-    <div>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <div>
         <TypingString>환영합니다!</TypingString>
 
@@ -44,7 +45,7 @@ function HomePage() {
           </StaggerWrapper>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
