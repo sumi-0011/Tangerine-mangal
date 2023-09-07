@@ -48,7 +48,7 @@ function StartPage() {
           className="b-16"
           onClick={() => {
             if (isGo) {
-              push('/question');
+              push('/onboarding');
               return;
             }
             setIsGo(true);

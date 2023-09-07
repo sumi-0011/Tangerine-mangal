@@ -95,7 +95,6 @@ function Question() {
     max: QUESTIONS.length + 1,
   });
 
-  console.log('currentStep: ', currentStep);
   const [selects, setSelects] = useState<string[]>([]);
   console.log('selects: ', selects);
 
