@@ -41,6 +41,7 @@ code, button {
 
 .r-16, .b-16, .eb-16 {
   font-size: 16px;
+  line-height: 20px; 
 }
 
 .r-20, .b-20, .eb-20 {
