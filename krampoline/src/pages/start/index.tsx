@@ -32,11 +32,11 @@ function StartPage() {
             <p>맛집 정보 모음집</p>
           </Par2>
           <Par3>
-            <p>서로 잊지 않고</p>
-            <p>가슴 속에 깊이 품고 있으면</p>
-            <p>사라지는 일은 결코 없단다</p>
+            <p>“귤망 하다”</p>
+            <p>가성비를 무시할 정도로 </p>
+            <p>맛있고, 또 찾고 싶어지다</p>
           </Par3>
-          <Par4 className="eb-12">- 나의 라임오렌지나무 중 -</Par4>
+          <Par4 className="eb-12">- 7기 구름톤 기록 어딘가 -</Par4>
 
           <MainRaBong>
             <img src={BigRabong} alt="big rabong" />
@@ -46,9 +46,9 @@ function StartPage() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, transition: { delay: 0.4 } }}
-            exit={{ opacity: 0, x: -10 }}
+            exit={{ opacity: 0 }}
           >
-            <GoButton>시작하기</GoButton>
+            <GoButton onClick={() => push('/onboarding')}>시작하기</GoButton>
           </motion.div>
         ) : (
           <ButtonContainer
@@ -200,7 +200,7 @@ const Par3 = styled.div`
 const Par4 = styled.div`
   position: absolute;
   top: 304px;
-  left: 500px;
+  left: 490px;
   width: 210px;
 `;
 
