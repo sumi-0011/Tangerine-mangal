@@ -40,6 +40,7 @@ function App() {
               {/* 단독 레이아웃 */}
               <Route path={staticServerUrl + '/login'} element={<HomePage />}></Route>
               <Route path={staticServerUrl + '/'} element={<HomePage />}></Route>
+              <Route path="*" element={<>Not Found...</>}></Route>
             </Routes>
           </BrowserRouter>
         </Container>
