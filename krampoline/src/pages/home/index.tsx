@@ -12,7 +12,7 @@ function HomePage() {
       <div>
         <TypingString>환영합니다!</TypingString>
 
-        <Link to={staticServerUrl + 'login'}>로그인 페이지로 이동</Link>
+        <Link to={staticServerUrl + '/login'}>로그인 페이지로 이동</Link>
       </div>
     </div>
   );
