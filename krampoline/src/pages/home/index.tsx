@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -12,7 +13,7 @@ function HomePage() {
   console.log('position: ', position);
 
   return (
-    <div>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <div>
         <TypingString>환영합니다!</TypingString>
 
@@ -29,7 +30,7 @@ function HomePage() {
           </StaggerWrapper>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
