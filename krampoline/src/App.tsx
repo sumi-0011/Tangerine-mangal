@@ -6,9 +6,11 @@ import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { instance } from './api.js';
+import { path } from './constants/path';
 import { staticServerUrl } from './constants/url';
 import HomePage from './pages/home';
 import Question from './pages/question';
+import ResultLoadingPage from './pages/resultLoading';
 import StartPage from './pages/start';
 
 function App() {
@@ -46,6 +48,10 @@ const InnerRouter = () => {
         <Route path={staticServerUrl + '/'} element={<StartPage />}></Route>
         <Route path={staticServerUrl + '/login'} element={<HomePage />}></Route>
         <Route path={staticServerUrl + '/question'} element={<Question />}></Route>
+        <Route
+          path={staticServerUrl + path.resultLoading}
+          element={<ResultLoadingPage />}
+        ></Route>
         <Route path="*" element={<div>Not Found...</div>}></Route>
       </Routes>
     </AnimatePresence>

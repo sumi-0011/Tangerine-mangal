@@ -1,16 +1,70 @@
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
+import { path } from '../../constants/path';
+import useInnerNavigator from '../../hooks/useInnerNavigator';
 import useStep from '../../hooks/useStep';
 import Dots from './Dots';
 // import QuestionItem from './Item';
 
+const QUESTIONS = [
+  [
+    {
+      id: 1,
+      title: '설문 항목 하나 둘 셋',
+    },
+    {
+      id: 2,
+      title: '설문 항목 하나 둘 셋넨네넷',
+    },
+  ],
+  [
+    {
+      id: 1,
+      title: '설문 항목 하나 둘 셋',
+    },
+    {
+      id: 2,
+      title: '설문 항목 하나 둘 셋tpttpt',
+    },
+  ],
+  [
+    {
+      id: 1,
+      title: '설문 항목 하나 둘 셋',
+    },
+    {
+      id: 2,
+      title: '설문 항목 하나 둘 셋tpttpt',
+    },
+  ],
+  [
+    {
+      id: 1,
+      title: '설문 항목 하나 둘 셋',
+    },
+    {
+      id: 2,
+      title: '설문 항목 하나 둘 셋tpttpt',
+    },
+  ],
+];
+
 function Question() {
+  const { push } = useInnerNavigator();
   const { currentStep, next } = useStep({
     initial: 1,
     max: 4,
   });
 
-  console.log('currentStep: ', currentStep);
+  const onNext = () => {
+    if (currentStep < 4) {
+      next();
+      return;
+    }
+    push(path.resultLoading);
+  };
+
   return (
     <Container>
       <Dots step={currentStep} />
@@ -21,9 +75,10 @@ function Question() {
         <h1 className="b-24">안녕 나는 춘식이야</h1>
         <h1 className="b-24">여기에 어떤 내용을 넣을까</h1>
       </HeadingContainer>
-      <QuestionContainer>
-        <QuestionItem onClick={() => next()}>설문 항목 하나 둘 셋</QuestionItem>
-        <QuestionItem>설문 항목 하나 둘 셋ㅁㅁㅁㅁㅁ</QuestionItem>
+      <QuestionContainer onClick={onNext}>
+        {QUESTIONS[currentStep - 1].map((question) => (
+          <QuestionItem key={question.id}>{question.title}</QuestionItem>
+        ))}
       </QuestionContainer>
     </Container>
   );
