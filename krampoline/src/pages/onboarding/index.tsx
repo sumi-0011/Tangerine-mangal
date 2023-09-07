@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -10,7 +11,11 @@ import MainCircle from './main_circle.svg';
 function OnboardingPage() {
   const { push } = useInnerNavigator();
   return (
-    <PageContainer>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, x: -10 }}
+    >
       <Container>
         <Dots step={1} len={4} />
         <Box1 />
@@ -34,7 +39,7 @@ function OnboardingPage() {
           진행하기
         </BottomLeftArrowButton>
       </Container>
-    </PageContainer>
+    </motion.div>
   );
 }
 
