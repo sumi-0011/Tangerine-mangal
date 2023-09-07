@@ -91,20 +91,20 @@ const QUESTIONS: QuestionType[] = [
 
 function Question() {
   const { currentStep, next } = useStep({
-    initial: 1,
-    max: QUESTIONS.length,
+    initial: 2,
+    max: QUESTIONS.length + 1,
   });
 
   console.log('currentStep: ', currentStep);
   const [selects, setSelects] = useState<string[]>([]);
   console.log('selects: ', selects);
 
-  const currentItem = QUESTIONS[currentStep - 1];
+  const currentItem = QUESTIONS[currentStep - 2];
 
   return (
     <PageContainer>
       <Container>
-        <Dots step={currentStep} len={QUESTIONS.length} />
+        <Dots step={currentStep} len={QUESTIONS.length + 1} />
         <ImageContainer>
           <StepImage step={currentStep} />
         </ImageContainer>
