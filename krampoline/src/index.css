@@ -1,13 +1,42 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+code, button {
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+.r-12, .r-14, .r-16 , .r-20, .r-24 {
+  font-weight: 400;
+}
+
+.b-12, .b-14, .b-16,.b-20, .b-24  {
+  font-weight: 700;
+}
+
+.eb-12, .eb-14, .eb-16, .eb-20, .eb-24  {
+  font-weight: 800;
+}
+
+.r-12, .b-12, .eb-12 {
+  font-size: 12px;
+}
+
+.r-14, .b-14, .eb-14 {
+  font-size: 14px;
+}
+
+.r-16, .b-16, .eb-16 {
+  font-size: 16px;
+}
+
+.r-20, .b-20, .eb-20 {
+  font-size: 20px;
+}
+
+.r-24, .b-24, .eb-24 {
+  font-size: 24px;
 }

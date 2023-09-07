@@ -7,7 +7,9 @@ function StartPage() {
 
   return (
     <Container>
-      <MoveContainer isGo={isGo}>StartPage</MoveContainer>
+      <MoveContainer isGo={isGo}>
+        <p className="eb-16">Start page</p>
+      </MoveContainer>
       <button onClick={() => setIsGo(true)}>Go!</button>
     </Container>
   );
