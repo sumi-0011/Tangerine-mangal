@@ -1,11 +1,14 @@
 import './App.css';
 
 import { useEffect, useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { instance } from './api.js';
 import { defaultFadeInUpVariants } from './constants/motions';
 import HomePage from './pages/home';
 import Router from './router/Router';
+
+const staticServerUrl = process.env.REACT_APP_PATH || '';
 
 function App() {
   // const [apiTest, setApiTest] = useState(false);
@@ -28,19 +31,19 @@ function App() {
   //     console.log(err);
   //   }
   // };
+  console.log('staticServerUrl: ', staticServerUrl);
 
   return (
     <div className="App">
-		<div className="layout">
-			<BrowserRouter>
-				<Routes>
-					{/* 단독 레이아웃 */}
-					<Route path={staticServerUrl + "/login"} element={<HomePage />}></Route>					
-					<Route path={staticServerUrl + "/"} element={<HomePage />}></Route>					
-				</Routes>
-			</BrowserRouter>
-		</div>
-      
+      <div className="layout">
+        <BrowserRouter>
+          <Routes>
+            {/* 단독 레이아웃 */}
+            <Route path={staticServerUrl + '/login'} element={<HomePage />}></Route>
+            <Route path={staticServerUrl + '/'} element={<HomePage />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
     </div>
   );
 }
