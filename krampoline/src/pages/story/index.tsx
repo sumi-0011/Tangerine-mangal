@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
+import BottomLeftArrowButton from '../../components/BottomLeftArrowButton';
 import PageContainer from '../../components/PageContainer';
 import { defaultFadeInVariants } from '../../constants/motions';
 import basket from './basket.svg';
@@ -30,6 +31,7 @@ function StoryPage() {
             <p className="r-14">아름다운 그물망에 너가 좋아하는 가게들을 마음껏 담아봐</p>
           </div>
         </TextContainer>
+        <BottomLeftArrowButton>다음</BottomLeftArrowButton>
       </Container>
     </PageContainer>
   );
@@ -48,7 +50,6 @@ const Container = styled.div`
 `;
 
 const ImgWrapper = styled(motion.div)`
-  margin-top: 114px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,11 +94,11 @@ const SkipButton = styled.button`
 `;
 
 const SkipContainer = styled.div`
-  width: 100%;
+  top: 62px;
+  right: 8px;
+  position: absolute;
+  width: fit-content;
   height: fit-content;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
 `;
 
 export default StoryPage;
