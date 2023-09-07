@@ -48,7 +48,7 @@ function StartPage() {
             animate={{ opacity: 1, transition: { delay: 0.4 } }}
             exit={{ opacity: 0 }}
           >
-            <GoButton onClick={() => push('/onboarding')}>시작하기</GoButton>
+            <GoButton onClick={() => push('/question')}>시작하기</GoButton>
           </motion.div>
         ) : (
           <ButtonContainer

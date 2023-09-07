@@ -92,14 +92,14 @@ const QUESTIONS: QuestionType[] = [
 
 function Question() {
   const { currentStep, next } = useStep({
-    initial: 2,
-    max: QUESTIONS.length + 1,
+    initial: 1,
+    max: QUESTIONS.length,
   });
 
   const [selects, setSelects] = useState<string[]>([]);
   console.log('selects: ', selects);
 
-  const currentItem = QUESTIONS[currentStep - 2];
+  const currentItem = QUESTIONS[currentStep - 1];
 
   return (
     <motion.div
@@ -108,9 +108,9 @@ function Question() {
       exit={{ opacity: 0 }}
     >
       <Container>
-        <Dots step={currentStep} len={QUESTIONS.length + 1} />
+        <Dots step={currentStep} len={QUESTIONS.length} />
         <ImageContainer>
-          <StepImage step={currentStep} />
+          <StepImage step={currentStep + 1} />
         </ImageContainer>
         <QuestionItem
           currentStep={currentStep}
@@ -126,10 +126,10 @@ function Question() {
 export default Question;
 
 const ImageContainer = styled.div`
-  margin: 48px auto 58px;
+  margin: 28px auto 58px;
   text-align: center;
 `;
 
 const Container = styled.div`
-  padding: 62px 36px;
+  padding: 82px 36px;
 `;

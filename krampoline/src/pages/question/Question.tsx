@@ -38,7 +38,7 @@ interface Props {
   next: () => void;
 }
 
-const MAX_STEP = 4;
+const MAX_STEP = 3;
 
 function Question({ currentItem, currentStep, setSelects, next }: Props) {
   const { push } = useInnerNavigator();
