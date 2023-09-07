@@ -1,13 +1,10 @@
 import './App.css';
 
-import { PropsWithChildren, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { instance } from './api.js';
-import { defaultFadeInUpVariants } from './constants/motions';
 import HomePage from './pages/home';
-import Router from './router/Router';
 
 const staticServerUrl = process.env.REACT_APP_PATH || '';
 
