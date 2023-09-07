@@ -1,5 +1,6 @@
 import './App.css';
 
+import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -10,17 +11,7 @@ import StartPage from './pages/start';
 const staticServerUrl = process.env.REACT_APP_PATH || '';
 
 function App() {
-  // const [apiTest, setApiTest] = useState(false);
-  // const [dbTest, setDbTest] = useState(false);
-
-  // const handleApiOnclick = async () => {
-  //   try {
-  //     await instance.get('/test');
-  //     setApiTest(true);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const [apiTest, setApiTest] = useState(false);
 
   // const handleDbOnClick = async () => {
   //   try {
@@ -39,7 +30,7 @@ function App() {
             <Routes>
               {/* 단독 레이아웃 */}
               <Route path={staticServerUrl + '/login'} element={<HomePage />}></Route>
-              <Route path={staticServerUrl + '/'} element={<StartPage />}></Route>
+              <Route path={staticServerUrl + '/'} element={<HomePage />}></Route>
               <Route path="*" element={<div>Not Found...</div>}></Route>
             </Routes>
           </BrowserRouter>
