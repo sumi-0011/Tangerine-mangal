@@ -1,11 +1,22 @@
+import { useEffect } from 'react';
 import styled from 'styled-components';
 
+import BottomLeftArrowButton from '../../components/BottomLeftArrowButton';
 import PageContainer from '../../components/PageContainer';
 import StaggerWrapper from '../../components/StaggerWrapper';
 import { defaultFadeInUpVariants } from '../../constants/motions';
+import useInnerNavigator from '../../hooks/useInnerNavigator';
 import Character from './Character';
 
 function ResultLoadingPage() {
+  const { push } = useInnerNavigator();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      push('/story');
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <PageContainer>
       <Container>

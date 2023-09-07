@@ -5,16 +5,17 @@ import styled from 'styled-components';
 import BottomLeftArrowButton from '../../components/BottomLeftArrowButton';
 import PageContainer from '../../components/PageContainer';
 import { defaultFadeInVariants } from '../../constants/motions';
+import useStep from '../../hooks/useStep';
 import basket from './basket.svg';
 
-// interface NextStage {
-//   title: string;
-//   contents: string[];
-// }
+interface NextStage {
+  title: string;
+  contents: string[];
+}
 
 // type NextStageType = NextStage;
 
-const NextStateContents: NextStageType[] = [
+const NextStateContents: NextStage[] = [
   {
     title: '열심히 만들어 본 그물망이야',
     contents: ['아름다운 그물망에 너가 좋아하는 가게들을 마음껏 담아봐'],
@@ -40,6 +41,11 @@ const NextStateContents: NextStageType[] = [
 // }
 
 function StoryPage() {
+  const { currentStep, next } = useStep({
+    initial: 0,
+    max: 2,
+  });
+
   return (
     <PageContainer>
       <Container>
@@ -58,7 +64,7 @@ function StoryPage() {
         </ImgWrapper>
         <TextContainer>
           <HeadingContainer>
-            <h1 className="b-24">이 아름다운 그물망에</h1>
+            <h1 className="b-24">{NextStateContents[currentStep].title}</h1>
           </HeadingContainer>
           <div>
             <p className="r-14">아름다운 그물망에 너가 좋아하는 가게들을 마음껏 담아봐</p>
