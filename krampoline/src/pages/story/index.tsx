@@ -5,8 +5,12 @@ import styled from 'styled-components';
 import BottomLeftArrowButton from '../../components/BottomLeftArrowButton';
 import PageContainer from '../../components/PageContainer';
 import { defaultFadeInVariants } from '../../constants/motions';
+import useInnerNavigator from '../../hooks/useInnerNavigator';
 import useStep from '../../hooks/useStep';
 import basket from './basket.svg';
+import basket2 from './basket-2.svg';
+import nextIcon from './next.svg';
+import rabong from './rabong.svg';
 
 interface NextStage {
   title: string;
@@ -33,24 +37,27 @@ const NextStateContents: NextStage[] = [
   },
 ];
 
-// interface Props {
-//   currentItem: NextStateContents;
-//   currentStep: number;
-
-//   next: () => void;
-// }
-
 function StoryPage() {
+  const { push } = useInnerNavigator();
+
   const { currentStep, next } = useStep({
     initial: 0,
     max: 2,
   });
 
+  const onNext = () => {
+    next();
+  };
+
+  const onNextPage = () => {
+    push('/recommend');
+  };
+
   return (
     <PageContainer>
       <Container>
         <SkipContainer>
-          <SkipButton>
+          <SkipButton onClick={onNextPage}>
             <p className="r-16">skip</p>
           </SkipButton>
         </SkipContainer>
@@ -60,21 +67,61 @@ function StoryPage() {
           animate="animate"
           exit="exit"
         >
-          <img alt="그물망" src={basket} />
+          <motion.img
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 10 }}
+            key={currentStep === 0 ? 'basket' : 'basket2'}
+            alt="그물망"
+            src={currentStep === 0 ? basket : basket2}
+          />
+          {currentStep === 2 && (
+            <motion.article
+              variants={defaultFadeInVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <img src={rabong} alt="rabong" />
+            </motion.article>
+          )}
         </ImgWrapper>
         <TextContainer>
           <HeadingContainer>
             <h1 className="b-24">{NextStateContents[currentStep].title}</h1>
           </HeadingContainer>
-          <div>
-            <p className="r-14">아름다운 그물망에 너가 좋아하는 가게들을 마음껏 담아봐</p>
-          </div>
+          <SubContainer>
+            <p className="r-14">
+              {NextStateContents[currentStep].contents.map((content) => (
+                <p key={content}>{content}</p>
+              ))}
+            </p>
+          </SubContainer>
         </TextContainer>
-        <BottomLeftArrowButton>다음</BottomLeftArrowButton>
+        {currentStep === 2 ? (
+          <NextButton onClick={onNextPage}>
+            <img src={nextIcon} alt="next" />
+          </NextButton>
+        ) : (
+          <BottomLeftArrowButton onClick={onNext}>다음</BottomLeftArrowButton>
+        )}
       </Container>
     </PageContainer>
   );
 }
+
+const NextButton = styled.button`
+  outline: none;
+  position: absolute;
+  bottom: 158px;
+  margin: auto;
+  left: 0;
+  right: 0;
+  width: fit-content;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+`;
 
 const Container = styled.div`
   /* & > article { */
@@ -88,6 +135,9 @@ const Container = styled.div`
   /* } */
 `;
 
+const SubContainer = styled.div`
+  min-height: 42px;
+`;
 const ImgWrapper = styled(motion.div)`
   display: flex;
   align-items: center;
@@ -96,12 +146,18 @@ const ImgWrapper = styled(motion.div)`
   height: 220px;
   flex-shrink: 0;
   border-radius: 100%;
-  background-color: #fff;
+  background-color: #fff0bf;
   box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.25) inset;
 
+  position: relative;
   > img {
     width: 163.958px;
     height: 154.797px;
+  }
+  & > article {
+    position: absolute;
+    bottom: -16px;
+    right: -16px;
   }
 `;
 
@@ -123,6 +179,7 @@ const SkipButton = styled.button`
   border: none;
   background: none;
   padding: 8px 16px;
+  cursor: pointer;
   margin-right: 17px;
 
   > p {
