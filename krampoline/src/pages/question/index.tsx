@@ -1,12 +1,19 @@
 import { styled } from 'styled-components';
 
+import useStep from '../../hooks/useStep';
 import Dots from './Dots';
-import QuestionItem from './Item';
+// import QuestionItem from './Item';
 
 function Question() {
+  const { currentStep, next } = useStep({
+    initial: 1,
+    max: 4,
+  });
+
+  console.log('currentStep: ', currentStep);
   return (
     <Container>
-      <Dots />
+      <Dots step={currentStep} />
       <ImageContainer>
         <DummyImage />
       </ImageContainer>
@@ -15,7 +22,7 @@ function Question() {
         <h1 className="b-24">여기에 어떤 내용을 넣을까</h1>
       </HeadingContainer>
       <QuestionContainer>
-        <QuestionItem>설문 항목 하나 둘 셋</QuestionItem>
+        <QuestionItem onClick={() => next()}>설문 항목 하나 둘 셋</QuestionItem>
         <QuestionItem>설문 항목 하나 둘 셋ㅁㅁㅁㅁㅁ</QuestionItem>
       </QuestionContainer>
     </Container>
@@ -23,6 +30,13 @@ function Question() {
 }
 
 export default Question;
+
+const QuestionItem = styled.div`
+  padding: 20px 66px 20px 24px;
+  width: fit-content;
+  border-radius: 10px 10px 30px 10px;
+  border: 1px solid var(--color-primary-orange-2, #b38800);
+`;
 
 const ImageContainer = styled.div`
   margin: 47px auto 58px;

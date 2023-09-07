@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
 import { styled } from 'styled-components';
 
-function Dots() {
-  const [step, setStep] = useState(2);
+function Dots({ step }: { step: number }) {
   return (
     <Container>
       {Array.from({ length: 4 }, (_, i) => (
