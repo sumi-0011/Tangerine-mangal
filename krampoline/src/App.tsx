@@ -12,6 +12,7 @@ import HomePage from './pages/home';
 import Question from './pages/question';
 import ResultLoadingPage from './pages/resultLoading';
 import StartPage from './pages/start';
+import StoryPage from './pages/story';
 
 function App() {
   // const handleDbOnClick = async () => {
@@ -48,6 +49,7 @@ const InnerRouter = () => {
         <Route path={staticServerUrl + '/'} element={<StartPage />}></Route>
         <Route path={staticServerUrl + '/home'} element={<HomePage />}></Route>
         <Route path={staticServerUrl + '/question'} element={<Question />}></Route>
+        <Route path={staticServerUrl + '/story'} element={<StoryPage />}></Route>
         <Route
           path={staticServerUrl + path.resultLoading}
           element={<ResultLoadingPage />}
