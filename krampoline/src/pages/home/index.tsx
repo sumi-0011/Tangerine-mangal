@@ -16,7 +16,7 @@ function HomePage() {
 
   const handleApiOnclick = async () => {
     try {
-      const data = await instance.post('/v1/test', {
+      const data = await instance.post('/v1/test/', {
         lat: 1111,
         lng: 0.1918,
       });
