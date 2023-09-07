@@ -6,15 +6,20 @@ function usePosition() {
     lng: number;
   } | null>(null);
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position);
-      setPosition({
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      });
+  const success = (position: any) => {
+    console.log(position);
+    setPosition({
+      lat: position.coords.latitude,
+      lng: position.coords.longitude,
     });
-    // .catch((err) => {});
+  };
+
+  const error = (err: any) => {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  };
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(success, error);
   }, []);
 
   return {
