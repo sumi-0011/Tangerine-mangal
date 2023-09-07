@@ -9,6 +9,7 @@ import { instance } from './api.js';
 import { path } from './constants/path';
 import { staticServerUrl } from './constants/url';
 import HomePage from './pages/home';
+import OnboardingPage from './pages/onboarding';
 import Question from './pages/question';
 import ResultLoadingPage from './pages/resultLoading';
 import StartPage from './pages/start';
@@ -50,6 +51,10 @@ const InnerRouter = () => {
         <Route path={staticServerUrl + '/home'} element={<HomePage />}></Route>
         <Route path={staticServerUrl + '/question'} element={<Question />}></Route>
         <Route path={staticServerUrl + '/story'} element={<StoryPage />}></Route>
+        <Route
+          path={staticServerUrl + '/onboarding'}
+          element={<OnboardingPage />}
+        ></Route>
         <Route
           path={staticServerUrl + path.resultLoading}
           element={<ResultLoadingPage />}

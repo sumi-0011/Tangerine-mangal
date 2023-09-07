@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { styled } from 'styled-components';
 
@@ -95,14 +96,17 @@ function Question() {
     max: QUESTIONS.length + 1,
   });
 
-  console.log('currentStep: ', currentStep);
   const [selects, setSelects] = useState<string[]>([]);
   console.log('selects: ', selects);
 
   const currentItem = QUESTIONS[currentStep - 2];
 
   return (
-    <PageContainer>
+    <motion.div
+      initial={{ opacity: 0, x: -10 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0 }}
+    >
       <Container>
         <Dots step={currentStep} len={QUESTIONS.length + 1} />
         <ImageContainer>
@@ -115,7 +119,7 @@ function Question() {
           next={next}
         />
       </Container>
-    </PageContainer>
+    </motion.div>
   );
 }
 

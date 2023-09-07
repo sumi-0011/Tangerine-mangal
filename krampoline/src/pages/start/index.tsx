@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import BottomLeftArrowButton from '../../components/BottomLeftArrowButton';
 import useInnerNavigator from '../../hooks/useInnerNavigator';
 import ArrowIcon from './arrow_back_24px.svg';
 import MainCircle from './main_circle.svg';
@@ -48,7 +47,7 @@ function StartPage() {
           className="b-16"
           onClick={() => {
             if (isGo) {
-              push('/question');
+              push('/onboarding');
               return;
             }
             setIsGo(true);
