@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { instance } from './api.js';
 import { staticServerUrl } from './constants/url';
 import HomePage from './pages/home';
+import Question from './pages/question';
 import StartPage from './pages/start';
 
 function App() {
@@ -42,8 +43,9 @@ const InnerRouter = () => {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         {/* 단독 레이아웃 */}
-        <Route path={staticServerUrl + '/login'} element={<HomePage />}></Route>
         <Route path={staticServerUrl + '/'} element={<StartPage />}></Route>
+        <Route path={staticServerUrl + '/login'} element={<HomePage />}></Route>
+        <Route path={staticServerUrl + '/question'} element={<Question />}></Route>
         <Route path="*" element={<div>Not Found...</div>}></Route>
       </Routes>
     </AnimatePresence>
