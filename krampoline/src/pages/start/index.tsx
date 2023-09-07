@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { staticServerUrl } from '../../constants/url';
 import useInnerNavigator from '../../hooks/useInnerNavigator';
 
 function StartPage() {
@@ -14,7 +15,10 @@ function StartPage() {
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <Container>
         <MoveContainer isGo={isGo}>
-          <p className="eb-16">Start page</p>
+          <Link to={staticServerUrl + '/home'}>
+            <p className="eb-16">Start page</p>
+            <button>home</button>
+          </Link>
         </MoveContainer>
         <button
           onClick={() => {

@@ -46,7 +46,7 @@ const InnerRouter = () => {
       <Routes location={location} key={location.pathname}>
         {/* 단독 레이아웃 */}
         <Route path={staticServerUrl + '/'} element={<StartPage />}></Route>
-        <Route path={staticServerUrl + '/login'} element={<HomePage />}></Route>
+        <Route path={staticServerUrl + '/home'} element={<HomePage />}></Route>
         <Route path={staticServerUrl + '/question'} element={<Question />}></Route>
         <Route
           path={staticServerUrl + path.resultLoading}
