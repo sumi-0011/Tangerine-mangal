@@ -50,9 +50,6 @@ function Question({ currentItem, setSelects, next }: Props) {
 
   return (
     <StaggerWrapper>
-      <ImageContainer>
-        <DummyImage />
-      </ImageContainer>
       <HeadingContainer>
         {currentItem.titles.map((title) => (
           <h1 className="b-24" key={title}>
@@ -102,11 +99,6 @@ const QuestionItem = styled.div`
   cursor: pointer;
 `;
 
-const ImageContainer = styled.div`
-  margin: 47px auto 58px;
-  text-align: center;
-`;
-
 const HeadingContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -119,39 +111,3 @@ const QuestionContainer = styled.div`
   gap: 10px;
   margin-top: 34px;
 `;
-
-const DummyImage = () => {
-  return (
-    <svg
-      width="228"
-      height="228"
-      viewBox="0 0 228 228"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <g filter="url(#filter0_f_99_5062)">
-        <circle cx="114" cy="114" r="110" fill="#FFA000" />
-      </g>
-      <defs>
-        <filter
-          id="filter0_f_99_5062"
-          x="0"
-          y="0"
-          width="228"
-          height="228"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feBlend
-            mode="normal"
-            in="SourceGraphic"
-            in2="BackgroundImageFix"
-            result="shape"
-          />
-          <feGaussianBlur stdDeviation="2" result="effect1_foregroundBlur_99_5062" />
-        </filter>
-      </defs>
-    </svg>
-  );
-};

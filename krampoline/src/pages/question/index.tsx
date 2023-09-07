@@ -1,17 +1,11 @@
-import { type } from 'os';
 import { useState } from 'react';
-import Typing from 'react-kr-typing-anim';
 import { styled } from 'styled-components';
 
 import PageContainer from '../../components/PageContainer';
-import StaggerWrapper from '../../components/StaggerWrapper';
-import TypingString from '../../components/TypingString';
-import { path } from '../../constants/path';
-import useInnerNavigator from '../../hooks/useInnerNavigator';
 import useStep from '../../hooks/useStep';
 import Dots from './Dots';
-import QuestionInputItem from './InputItem';
 import QuestionItem from './Question';
+import StepImage from './StepImage';
 
 interface ChoiceQuestionType {
   titles: string[];
@@ -103,7 +97,7 @@ const QUESTIONS: QuestionType[] = [
 
 function Question() {
   const { currentStep, next } = useStep({
-    initial: 1,
+    initial: 2,
     max: QUESTIONS.length,
   });
 
@@ -116,6 +110,9 @@ function Question() {
     <PageContainer>
       <Container>
         <Dots step={currentStep} len={QUESTIONS.length} />
+        <ImageContainer>
+          <StepImage step={currentStep} />
+        </ImageContainer>
         <QuestionItem currentItem={currentItem} setSelects={setSelects} next={next} />
       </Container>
     </PageContainer>
@@ -123,6 +120,11 @@ function Question() {
 }
 
 export default Question;
+
+const ImageContainer = styled.div`
+  margin: 48px auto 58px;
+  text-align: center;
+`;
 
 const Container = styled.div`
   padding: 62px 36px;

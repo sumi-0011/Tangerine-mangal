@@ -36,7 +36,7 @@ function HomePage() {
         <button onClick={handleApiOnclick}>api test</button>
         <div>
           <StaggerWrapper>
-            <p>sad</p>
+            <p className="b-24">sad</p>
             <p>sad</p>
             <p>sad</p>
             <p>sad</p>
