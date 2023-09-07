@@ -31,7 +31,16 @@ function App() {
 
   return (
     <div className="App">
-      <HomePage />
+		<div className="layout">
+			<BrowserRouter>
+				<Routes>
+					{/* 단독 레이아웃 */}
+					<Route path={staticServerUrl + "/login"} element={<HomePage />}></Route>					
+					<Route path={staticServerUrl + "/"} element={<HomePage />}></Route>					
+				</Routes>
+			</BrowserRouter>
+		</div>
+      
     </div>
   );
 }
