@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
 
-function Dots({ step }: { step: number }) {
+function Dots({ step, len }: { step: number; len: number }) {
   return (
     <Container>
-      {Array.from({ length: 4 }, (_, i) => (
+      {Array.from({ length: len }, (_, i) => (
         <Dot key={i} color={i < step ? '#FFA000' : '#D9D9D9'} />
       ))}
     </Container>

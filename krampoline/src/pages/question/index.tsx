@@ -1,90 +1,127 @@
-import { useNavigate } from 'react-router-dom';
+import { type } from 'os';
+import Typing from 'react-kr-typing-anim';
 import { styled } from 'styled-components';
 
 import PageContainer from '../../components/PageContainer';
 import StaggerWrapper from '../../components/StaggerWrapper';
+import TypingString from '../../components/TypingString';
 import { path } from '../../constants/path';
 import useInnerNavigator from '../../hooks/useInnerNavigator';
 import useStep from '../../hooks/useStep';
 import Dots from './Dots';
-// import QuestionItem from './Item';
+import QuestionInputItem from './InputItem';
 
-const QUESTIONS = [
-  [
-    {
-      id: 1,
-      title: '설문 항목 하나 둘 셋1111',
-    },
-    {
-      id: 2,
-      title: '설문 항목 하나 둘 셋넨네넷',
-    },
-  ],
-  [
-    {
-      id: 1,
-      title: '설문 항목 하나 둘 셋2222',
-    },
-    {
-      id: 2,
-      title: '설문 항목 하나 둘 셋tpttpt',
-    },
-  ],
-  [
-    {
-      id: 1,
-      title: '설문 항목 하나 둘 333',
-    },
-    {
-      id: 2,
-      title: '설문 항목 하나 둘 셋tpttpt',
-    },
-  ],
-  [
-    {
-      id: 1,
-      title: '설문 항목 하나 둘 셋4444',
-    },
-    {
-      id: 2,
-      title: '설문 항목 하나 둘 셋tpttpt',
-    },
-  ],
+interface ChoiceQuestionType {
+  titles: string[];
+  type: 'choice';
+  items: {
+    id: number;
+    title: string;
+  }[];
+}
+
+interface ShortQuestionType {
+  titles: string[];
+  type: 'short';
+}
+
+type QuestionType = ChoiceQuestionType | ShortQuestionType;
+
+const QUESTIONS: QuestionType[] = [
+  {
+    titles: ['나만의 맛집 사장님은', '어떤 사람이셨으면 좋겠어?'],
+    type: 'choice',
+    items: [
+      {
+        id: 1,
+        title: '인심 가득한',
+      },
+      {
+        id: 2,
+        title: '손맛이 좋은',
+      },
+      {
+        id: 3,
+        title: '따로 있어!',
+      },
+    ],
+  },
+  {
+    titles: ['나만의 식탁 주인공은', '누가 되었으면 좋겠어?'],
+    type: 'choice',
+    items: [
+      {
+        id: 1,
+        title: '고품질의 고기3',
+      },
+      {
+        id: 2,
+        title: '다양한 채소류',
+      },
+      {
+        id: 3,
+        title: '싱싱한 수산물',
+      },
+      {
+        id: 4,
+        title: '따뜻한 공깃밥',
+      },
+    ],
+  },
+  {
+    titles: ['나만의 식탁 주인공은22', '누가 되었으면 좋겠어?'],
+    type: 'short',
+  },
 ];
 
 function Question() {
   const { push } = useInnerNavigator();
   const { currentStep, next } = useStep({
     initial: 1,
-    max: 4,
+    max: QUESTIONS.length,
   });
 
   const onNext = () => {
-    if (currentStep < 4) {
+    if (currentStep < QUESTIONS.length) {
       next();
       return;
     }
     push(path.resultLoading);
   };
 
+  const currentItem = QUESTIONS[currentStep - 1];
+
   return (
     <PageContainer>
       <Container>
-        <Dots step={currentStep} />
+        <Dots step={currentStep} len={QUESTIONS.length} />
         <StaggerWrapper>
           <ImageContainer>
             <DummyImage />
           </ImageContainer>
           <HeadingContainer>
-            <h1 className="b-24">안녕 나는 춘식이야</h1>
-            <h1 className="b-24">여기에 어떤 내용을 넣을까</h1>
+            {currentItem.titles.map((title) => (
+              <h1 className="b-24" key={title}>
+                {title}
+              </h1>
+            ))}
           </HeadingContainer>
           <QuestionContainer>
-            {QUESTIONS[currentStep - 1].map((question) => (
-              <QuestionItem key={question.id} onClick={onNext}>
-                {question.title}
-              </QuestionItem>
-            ))}
+            {/* {currentItem.type === 'choice' &&
+              currentItem.items.map((question) => (
+                <QuestionItem key={question.id} onClick={onNext}>
+                  {question.title}
+                </QuestionItem>
+              ))} */}
+
+            <Tagg>
+              <TypingString isFirst={currentStep === 1}>
+                {currentItem.titles[0] +
+                  '너는 제주 흑돼지 고기를 좋아하고, 오늘은 서핑 후에 든든한 고기를 먹고 싶다니까. 그래서 너에게 오솔길을 추천할꺼야.'}
+              </TypingString>
+            </Tagg>
+            <button onClick={onNext}>next</button>
+            {/* {currentItem.type === 'short' && <QuestionInputItem />} */}
           </QuestionContainer>
         </StaggerWrapper>
       </Container>
@@ -94,6 +131,40 @@ function Question() {
 
 export default Question;
 
+const Tagg = styled.div`
+  .typewriter h1 {
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: 0.15em solid orange; /* The typwriter cursor */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: 0.15em; /* Adjust as needed */
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    transition-delay: 5s;
+    strong {
+      font-weight: 700;
+    }
+  }
+
+  /* The typing effect */
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from,
+    to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: orange;
+    }
+  }
+`;
 const QuestionItem = styled.div`
   padding: 20px 66px 20px 24px;
   width: fit-content;

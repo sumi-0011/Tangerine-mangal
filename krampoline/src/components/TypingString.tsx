@@ -1,15 +1,16 @@
 import React, { PropsWithChildren } from 'react';
 import Typing, { TypingMultiline } from 'react-kr-typing-anim';
 
-function TypingString({ children }: { children: string }) {
+function TypingString({ children, isFirst }: { children: string; isFirst?: boolean }) {
   return (
     <Typing
       Tag="div"
-      preDelay={1000}
-      postDelay={1000}
+      preDelay={isFirst ? 2500 : 0}
+      postDelay={50000}
+      speed={20}
       cursor
       fixedWidth
-      // onDone={() => console.log('done')}
+      onDone={() => console.log('done')}
     >
       {children}
     </Typing>
