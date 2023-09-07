@@ -10,8 +10,8 @@ import { path } from './constants/path';
 import { staticServerUrl } from './constants/url';
 import HomePage from './pages/home';
 import OffBoardingPage from './pages/offboading';
-import OnboardingPage from './pages/onboarding';
 import Question from './pages/question';
+import RecommendPage from './pages/recommend';
 import ResultLoadingPage from './pages/resultLoading';
 import StartPage from './pages/start';
 import StoryPage from './pages/story';
@@ -52,13 +52,10 @@ const InnerRouter = () => {
         <Route path={staticServerUrl + '/home'} element={<HomePage />}></Route>
         <Route path={staticServerUrl + '/question'} element={<Question />}></Route>
         <Route path={staticServerUrl + '/story'} element={<StoryPage />}></Route>
+        <Route path={staticServerUrl + '/recommend'} element={<RecommendPage />}></Route>
         <Route
           path={staticServerUrl + '/offboading'}
           element={<OffBoardingPage />}
-        ></Route>
-        <Route
-          path={staticServerUrl + '/onboarding'}
-          element={<OnboardingPage />}
         ></Route>
         <Route
           path={staticServerUrl + path.resultLoading}
