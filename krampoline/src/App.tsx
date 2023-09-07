@@ -1,18 +1,16 @@
 import './App.css';
 
+import { AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { instance } from './api.js';
+import { staticServerUrl } from './constants/url';
 import HomePage from './pages/home';
 import StartPage from './pages/start';
 
-const staticServerUrl = process.env.REACT_APP_PATH || '';
-
 function App() {
-  const [apiTest, setApiTest] = useState(false);
-
   // const handleDbOnClick = async () => {
   //   try {
   //     await instance.get('/db');
@@ -27,12 +25,7 @@ function App() {
       <div className="layout">
         <Container>
           <BrowserRouter>
-            <Routes>
-              {/* 단독 레이아웃 */}
-              <Route path={staticServerUrl + '/login'} element={<HomePage />}></Route>
-              <Route path={staticServerUrl + '/'} element={<HomePage />}></Route>
-              <Route path="*" element={<div>Not Found...</div>}></Route>
-            </Routes>
+            <InnerRouter />
           </BrowserRouter>
         </Container>
       </div>
@@ -41,6 +34,21 @@ function App() {
 }
 
 export default App;
+
+const InnerRouter = () => {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        {/* 단독 레이아웃 */}
+        <Route path={staticServerUrl + '/login'} element={<HomePage />}></Route>
+        <Route path={staticServerUrl + '/'} element={<StartPage />}></Route>
+        <Route path="*" element={<div>Not Found...</div>}></Route>
+      </Routes>
+    </AnimatePresence>
+  );
+};
 
 const Container = styled.main`
   min-height: 100vh;
