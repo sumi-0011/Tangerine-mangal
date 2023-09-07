@@ -55,7 +55,7 @@ const QUESTIONS: QuestionType[] = [
     items: [
       {
         id: 1,
-        title: '고품질의 고기3',
+        title: '고품질의 고기',
       },
       {
         id: 2,
@@ -72,9 +72,32 @@ const QUESTIONS: QuestionType[] = [
     ],
   },
   {
-    titles: ['나만의 식탁 주인공은22', '누가 되었으면 좋겠어?'],
+    titles: ['오늘 하루는 너에게', '어떻게 기억 될 것 같아?'],
+    type: 'choice',
+    items: [
+      {
+        id: 1,
+        title: '더운 하루를 식혀준 바다',
+      },
+      {
+        id: 2,
+        title: '편안한 카페와 여유 한 잔',
+      },
+      {
+        id: 3,
+        title: '제주 바람과의 드라이브',
+      },
+      {
+        id: 4,
+        title: '여기에는 없는 특별한 하루',
+      },
+    ],
+  },
+
+  {
+    titles: ['그럼 너의 하루는 어땠어?'],
     type: 'short',
-    subTitle: 'ex. 간이 강하지 않게 해 주시는 사장님',
+    subTitle: 'ex. 서핑, 산책, 등산, 카페에서 힐링',
   },
 ];
 

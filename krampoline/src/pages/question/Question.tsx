@@ -60,13 +60,17 @@ function Question({ currentItem, setSelects, next }: Props) {
           </h1>
         ))}
         {currentItem.type === 'short' && currentItem?.subTitle && (
-          <h2 className="b-16">{currentItem.subTitle}</h2>
+          <h2 className="r-16">{currentItem.subTitle}</h2>
         )}
       </HeadingContainer>
       <QuestionContainer>
         {currentItem.type === 'choice' &&
           currentItem.items.map((question) => (
-            <QuestionItem key={question.id} onClick={() => onNext(question.title)}>
+            <QuestionItem
+              className="b-20"
+              key={question.id}
+              onClick={() => onNext(question.title)}
+            >
               {question.title}
             </QuestionItem>
           ))}
