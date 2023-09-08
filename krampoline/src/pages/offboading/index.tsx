@@ -102,12 +102,19 @@ function OffBoardingPage() {
         </motion.div>
 
         <ButtonContainer>
-          <Link to={'#'}>
+          <Link to={'https://map.kakao.com/?q=' + info.name}>
             <Button className="b-16">지도 바로가기</Button>
           </Link>
-          <Link to={'#'}>
-            <Button className="b-16">길 찾기 바로가기</Button>
-          </Link>
+          {/* <Link to={'#'}> */}
+          <Button
+            className="b-16"
+            onClick={() => {
+              alert('준비중입니다.');
+            }}
+          >
+            길 찾기 바로가기
+          </Button>
+          {/* </Link> */}
         </ButtonContainer>
       </Container>
     </div>

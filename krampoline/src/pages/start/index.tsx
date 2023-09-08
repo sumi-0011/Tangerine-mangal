@@ -64,7 +64,7 @@ function StartPage() {
       </Container>
       {isGo && (
         <motion.div
-          initial={{ y: 120 }}
+          initial={{ y: 130 }}
           animate={{ y: 0, transition: { delay: 0.4, duration: 0.4 } }}
           exit={{ y: 0 }}
         >

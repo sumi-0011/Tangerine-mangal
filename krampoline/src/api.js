@@ -5,7 +5,6 @@ const staticServerUri = process.env.REACT_APP_PATH || '';
 const instance = axios.create({
   // 기본 URL 등에 꼭 URL 추가해 주세요.
   baseURL: staticServerUri + '/api', // "http://localhost:8080/",
-  timeout: 1000,
   headers: {
     'Content-Type': 'application/json',
   },
