@@ -2,10 +2,13 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import styled from 'styled-components';
 
+import BottomLeftArrowButton from '../../components/BottomLeftArrowButton';
+import StartButton from '../../components/StartButton';
 import { defaultFadeInUpVariants } from '../../constants/motions';
 import useInnerNavigator from '../../hooks/useInnerNavigator';
 import ArrowIcon from './arrow_back_24px.svg';
 import BigRabong from './big-rabong.svg';
+import JejuLogo from './jeju_logo.svg';
 import MainCircle from './main_circle.svg';
 import Tangerine from './Tangerine.svg';
 
@@ -23,10 +26,10 @@ function StartPage() {
           </Link> */}
           <HeadingContainer>
             {/* <img src={Tangerine} alt="Tangerine" /> */}
-            <h1>나의 제주,</h1>
-            <h1>착한 감귤 나무</h1>
+            <h1 className="eb-48">귤망갈망</h1>
           </HeadingContainer>
           <Par2 className="eb-14">
+            <img src={JejuLogo} alt="jeju_logo" />
             <p>&apos;청결 , 가격 뿐만 아니라 종업원 친절도&apos; 까지 </p>
             <p>전문 평가단이 직접 평가하고 인증한 </p>
             <p>맛집 정보 모음집</p>
@@ -48,7 +51,7 @@ function StartPage() {
             animate={{ opacity: 1, transition: { delay: 0.4 } }}
             exit={{ opacity: 0 }}
           >
-            <GoButton onClick={() => push('/question')}>시작하기</GoButton>
+            <StartButton onClick={() => push('/question')}>시작하기</StartButton>
           </motion.div>
         ) : (
           <ButtonContainer
@@ -57,7 +60,7 @@ function StartPage() {
               setIsGo(true);
             }}
           >
-            Go!
+            GO
             <img src={ArrowIcon} alt="arrow" />
           </ButtonContainer>
         )}
@@ -104,23 +107,6 @@ const BottomPopUp = styled.div`
   }
 `;
 
-const GoButton = styled.button`
-  position: absolute;
-  bottom: 150px;
-  right: 34px;
-
-  background-color: #ffa000;
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  border: none;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-
-  font-size: 22.456px;
-  font-weight: 700;
-  line-height: 28.07px; /* 125% */
-`;
-
 const ButtonContainer = styled.div`
   border-radius: 8px;
   background: #ffa000;
@@ -139,15 +125,19 @@ const ButtonContainer = styled.div`
 `;
 
 const HeadingContainer = styled.div`
+  letter-spacing: 24px;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  padding-top: 116px;
-
+  padding-top: 280px;
+  letter-spacing: 8px;
+  writing-mode: vertical-lr;
   color: #302b1d;
-  font-size: 36px;
+  font-size: 48px;
   font-weight: 800;
-  line-height: 40px; /* 111.111% */
+  line-height: 40px;
+  z-index: 1;
+  /* 111.111% */
   img {
     width: 64px;
     height: 64px;
@@ -181,12 +171,16 @@ const MoveContainer = styled(motion.div)<{
 const Par2 = styled.div`
   position: absolute;
   bottom: 144px;
+
+  > img {
+    margin-bottom: 12px;
+  }
 `;
 
 const Par3 = styled.div`
   position: absolute;
   top: 200px;
-  left: 412px;
+  left: 438px;
 
   color: #302b1d;
   font-size: 20px;
@@ -200,7 +194,7 @@ const Par3 = styled.div`
 const Par4 = styled.div`
   position: absolute;
   top: 304px;
-  left: 490px;
+  left: 520px;
   width: 210px;
 `;
 
