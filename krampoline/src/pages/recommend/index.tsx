@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion';
-import { SetStateAction, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import { instance } from '../../api';
 import BottomLeftArrowButton from '../../components/BottomLeftArrowButton';
 import BottomRightArrowButton from '../../components/BottomRightArrowButton';
 import PageContainer from '../../components/PageContainer';
 import TypingString from '../../components/TypingString';
 import { defaultFadeInVariants } from '../../constants/motions';
+import { STORAGE_KEY } from '../../constants/storage';
 import useInnerNavigator from '../../hooks/useInnerNavigator';
 import useStep from '../../hooks/useStep';
 import orange from './orange.svg';
@@ -35,8 +37,11 @@ const NextStateContents: NextStage[] = [
 
 function RecommendPage() {
   const { push } = useInnerNavigator();
+  const [data, setData] = useState<string[]>(
+    NextStateContents.map((item) => item.contents),
+  );
 
-  const { currentStep, next } = useStep({
+  const { currentStep, next, prev } = useStep({
     initial: 0,
     max: 2,
   });
@@ -45,9 +50,39 @@ function RecommendPage() {
     next();
   };
 
+  useEffect(() => {
+    const data = localStorage.getItem(STORAGE_KEY.storyData);
+    console.log('data: ', data);
+    if (data) {
+      const parData = JSON.parse(data);
+      setData([parData.text1, parData.text2, parData.text3]);
+      console.log('data: ', data);
+    }
+  }, []);
+
   // const onNextPage = () => {
   //   push('/recommend');
   // };
+
+  const submit = async () => {
+    try {
+      const data = await instance.get(`/service/?name=${'오솔길'}`);
+      // console.log('data: ', data);
+      localStorage.setItem(STORAGE_KEY.recommendData, JSON.stringify(data.data));
+    } catch (error) {
+      console.log('error: ', error);
+      localStorage.setItem(
+        STORAGE_KEY.recommendData,
+        JSON.stringify({
+          name: '오솔길',
+          address: '제주특별자치도 제주시 애월읍 애월해안로 376',
+          time: 11,
+        }),
+      );
+    } finally {
+      push('/offboading');
+    }
+  };
 
   return (
     <PageContainer>
@@ -55,34 +90,59 @@ function RecommendPage() {
         <ContentsContainer>
           <LeftPos className="r-24">&#34;</LeftPos>
           <TextContainer className="r-24">
-            <TypingString>{NextStateContents[0].contents}</TypingString>
+            <TypingString>{data[currentStep] ?? ''}</TypingString>
           </TextContainer>
           <RightPos className="r-24">
-            <PageCount className="r-16">{NextStateContents[0].id}/3</PageCount>
+            <PageCount className="r-16">{currentStep + 1}/3</PageCount>
             <p>&#34;</p>
           </RightPos>
         </ContentsContainer>
-        <BottomRightArrowButton>뒤로</BottomRightArrowButton>
-        <BottomLeftArrowButton>계속</BottomLeftArrowButton>
+        {currentStep !== 0 && (
+          <BottomRightArrowButton onClick={() => prev()}>뒤로</BottomRightArrowButton>
+        )}
+        <BottomLeftArrowButton onClick={onNext}>계속</BottomLeftArrowButton>
         <ImgContainer>
           <img src={orange} alt="next" />
         </ImgContainer>
+        {currentStep === 2 && (
+          <>
+            <NewButton className="b-16">다시 새로운 귤 까기</NewButton>
+            <NextButton className="b-16" onClick={submit}>
+              <span>식당 안내</span>
+            </NextButton>
+          </>
+        )}
       </Container>
     </PageContainer>
   );
 }
 
+const NewButton = styled.button`
+  outline: none;
+  position: absolute;
+
+  padding: 2px 5px;
+  gap: 10px;
+  background: #ffa101;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+
+  top: 166px;
+  right: 35px;
+`;
 const NextButton = styled.button`
   outline: none;
   position: absolute;
-  bottom: 158px;
-  margin: auto;
-  left: 0;
-  right: 0;
-  width: fit-content;
-  background-color: transparent;
+  bottom: 57px;
+  right: 35px;
+
+  padding: 2px 5px;
+  gap: 10px;
+  background: #ffa101;
   border: none;
   cursor: pointer;
+  color: #fff;
 `;
 
 const Container = styled.div`

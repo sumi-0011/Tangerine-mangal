@@ -36,11 +36,12 @@ interface Props {
 
   setSelects: Dispatch<SetStateAction<string[]>>;
   next: () => void;
+  onSubmit: (value: string) => void;
 }
 
 const MAX_STEP = 3;
 
-function Question({ currentItem, currentStep, setSelects, next }: Props) {
+function Question({ currentItem, currentStep, setSelects, next, onSubmit }: Props) {
   const { push } = useInnerNavigator();
 
   const [inputValue, setInputValue] = useState('');
@@ -52,8 +53,10 @@ function Question({ currentItem, currentStep, setSelects, next }: Props) {
       return;
     }
     if (currentStep === MAX_STEP) {
-      setSelects((prev) => [...prev, value]);
-      push(path.resultLoading);
+      onSubmit(value);
+      // setSelects((prev) => [...prev, value]);
+      console.log('value: ', value);
+      // push(path.resultLoading);
       return;
     }
     next();
@@ -66,8 +69,9 @@ function Question({ currentItem, currentStep, setSelects, next }: Props) {
       return;
     }
 
-    setSelects((prev) => [...prev, inputValue]);
-    push(path.resultLoading);
+    onSubmit(inputValue);
+    // setSelects((prev) => [...prev, inputValue]);
+    // push(path.resultLoading);
   };
 
   return (

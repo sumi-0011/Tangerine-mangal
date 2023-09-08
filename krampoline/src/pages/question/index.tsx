@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { styled } from 'styled-components';
 
 import PageContainer from '../../components/PageContainer';
+import { path } from '../../constants/path';
+import { STORAGE_KEY } from '../../constants/storage';
+import useInnerNavigator from '../../hooks/useInnerNavigator';
 import useStep from '../../hooks/useStep';
 import Dots from './Dots';
 import QuestionItem from './Question';
@@ -97,9 +100,14 @@ function Question() {
   });
 
   const [selects, setSelects] = useState<string[]>([]);
-  console.log('selects: ', selects);
+  const { push } = useInnerNavigator();
 
   const currentItem = QUESTIONS[currentStep - 1];
+
+  const onSubmit = (value: string) => {
+    localStorage.setItem(STORAGE_KEY.userInput, JSON.stringify([...selects, value]));
+    push(path.resultLoading);
+  };
 
   return (
     <motion.div
@@ -117,6 +125,7 @@ function Question() {
           currentItem={currentItem}
           setSelects={setSelects}
           next={next}
+          onSubmit={onSubmit}
         />
       </Container>
     </motion.div>
