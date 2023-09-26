@@ -1,29 +1,46 @@
-# krampoline-step2
+# Getting Started with Create React App
 
-## 소개
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-`krampoline-step2`은 krampoline의 React 예제입니다. 
-이 저장소에서는 `create-react-app`를 사용하여 기본적인 React App을 만듭니다.
-[serve](https://www.npmjs.com/package/serve)를 이용하여 3000번 포트에서 서버를 열고 React 기본 파일을 제공합니다.
+## Available Scripts
 
+In the project directory, you can run:
 
-쿠버네티스 구성은 다음과 같습니다.
-![image](https://github.com/MonoKim01/krampoline-step1/assets/85483855/248fb708-aa34-446b-9d0c-8bb30c9bc5f4)
+### `npm start`
 
-Ingress에서 Service에게 설정된 랜덤 String으로된 Path로 리다이렉트를 시킵니다.
-그렇기 때문에 route나 public폴더의 주소, api 주소 등을 신경써서 작성해 주시기 바랍니다.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## 필요 사항
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-- 기본적인 IDE 사용법 (자세한 내용은 가이드 문서 참조)
+### `npm test`
 
-## 주의 사항
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-- URL 경로를 잘 설정해주세요. 특히나 public 이나 route 를 다시 한 번 점검해주세요.
-  - 해당 예시의 경우 `krampoline/.env`에 포함된 `PUBLIC_URL`와 `REACT_APP_PATH`가 해당 역활을 합니다.
-  - 자신의 클러스터에서 백엔드를 만든 경우 API 사용의 시에는 꼭 URL 경로를 잘 확인해주세요. 예시로 `krampoline/src/api.js`를 참고하시면 됩니다.
-  - 만약 다른 서비스의 API를 사용하려고 하면 카카오의 프록시를 사용해야합니다. 해당 내용은 문의해주세요.
-- 꼭 `Dockerfile`과 `k8s` 폴더를 프로젝트에 포함시켜주세요.
-  - 프로젝트의 루트 (`/`) 위치에 포함되게 해주세요.
-- `k8s/deployment.yaml`과 `k8s/ingress.yaml` 파일은 필히 확인하시기 바랍니다.
-- `main`브런치에 작성해주세요.
+### `npm run build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).

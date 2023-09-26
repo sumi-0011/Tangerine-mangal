@@ -1,11 +1,9 @@
 import './App.css';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { instance } from './api.js';
 import { path } from './constants/path';
 import { staticServerUrl } from './constants/url';
 import HomePage from './pages/home';
@@ -17,15 +15,6 @@ import StartPage from './pages/start';
 import StoryPage from './pages/story';
 
 function App() {
-  // const handleDbOnClick = async () => {
-  //   try {
-  //     await instance.get('/db');
-  //     setDbTest(true);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
   return (
     <div className="App">
       <div className="layout">
@@ -53,15 +42,12 @@ const InnerRouter = () => {
         <Route path={staticServerUrl + '/question'} element={<Question />}></Route>
         <Route path={staticServerUrl + '/story'} element={<StoryPage />}></Route>
         <Route path={staticServerUrl + '/recommend'} element={<RecommendPage />}></Route>
-        <Route
-          path={staticServerUrl + '/offboading'}
-          element={<OffBoardingPage />}
-        ></Route>
+        <Route path={staticServerUrl + '/offboading'} element={<OffBoardingPage />} />
         <Route
           path={staticServerUrl + path.resultLoading}
           element={<ResultLoadingPage />}
-        ></Route>
-        <Route path="*" element={<div>Not Found...</div>}></Route>
+        />
+        <Route path="*" element={<div>Not Found...</div>} />
       </Routes>
     </AnimatePresence>
   );
