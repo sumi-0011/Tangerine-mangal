@@ -1,6 +1,4 @@
-import './App.css';
-
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
